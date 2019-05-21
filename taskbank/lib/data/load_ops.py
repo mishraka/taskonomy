@@ -63,7 +63,7 @@ def load_scaled_image( filename, color=True ):
             of size (H x W x 1) in grayscale.
     By kchen 
     """
-    img = skimage.img_as_float(skimage.io.imread(filename, as_grey=not color)).astype(np.float32)
+    img = skimage.img_as_float(skimage.io.imread(filename, as_grey=not color, plugin='imageio')).astype(np.float32)
     if img.ndim == 2:
         img = img[:, :, np.newaxis]
         if color:
@@ -91,7 +91,7 @@ def load_raw_image( filename, color=True, use_pil=False ):
     if use_pil:
         img = Image.open( filename )
     else:
-        img = skimage.io.imread(filename, as_grey=not color)
+        img = skimage.io.imread(filename, as_grey=not color, plugin='imageio')
 
     if use_pil:
         return img
@@ -1447,7 +1447,7 @@ def semantic_segment_rebalanced( template, new_dims, domain, root='/home/ubuntu/
         return np.zeros(tuple(new_dims)), np.zeros(tuple(new_dims))
     if os.stat(filename).st_size < 100:
         return np.zeros(tuple(new_dims)), np.zeros(tuple(new_dims))
-    img = skimage.io.imread( filename )
+    img = skimage.io.imread( filename , plugin='imageio')
     img = scipy.misc.imresize(img, tuple(new_dims), interp='nearest') 
     mask = img > 0.1
     mask = mask.astype(float)
@@ -1476,7 +1476,7 @@ def segment_pixel_sample( template, new_dims, num_pixels, domain, mask=None ):
         template = os.path.join(*template)
     filename = template.format( domain=domain )
     
-    img = skimage.io.imread( filename )
+    img = skimage.io.imread( filename , plugin='imageio')
     img = scipy.misc.imresize(img, tuple(new_dims), interp='nearest') 
 
     if mask is None:

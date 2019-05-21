@@ -41,7 +41,7 @@ def load_raw_image_center_crop( filename, color=True ):
             of size (H x W x 1) in grayscale.
     """
 
-    img = skimage.io.imread(filename, as_grey=not color)
+    img = skimage.io.imread(filename, as_grey=not color, plugin='imageio')
 
     if img.ndim == 2:
         img = img[:, :, np.newaxis]
