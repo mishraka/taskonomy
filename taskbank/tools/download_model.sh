@@ -3,26 +3,7 @@
 CURRDIR=$(pwd)
 BASEDIR=$(dirname "$0")
 
-TASKS="autoencoder \
-class_1000 \
-class_places \
-colorization \
-curvature \
-denoise \
-edge2d \
-edge3d \
-inpainting_whole \
-jigsaw \
-keypoint2d \
-keypoint3d \
-reshade \
-rgb2depth \
-rgb2mist \
-rgb2sfnorm \
-room_layout \
-segment25d \
-segment2d \
-segmentsemantic \
+TASKS=" curvature \
 vanishing_point"
 mkdir -p "$CURRDIR/$BASEDIR/../temp"
 
