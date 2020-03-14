@@ -36,7 +36,7 @@ from lib.data.synset import *
 from models.sample_models import *
 from task_viz import *
 
-# matplotlib.use('Agg')
+matplotlib.use('Agg')
 
 
 parser = argparse.ArgumentParser(description='Viz Single Task')
