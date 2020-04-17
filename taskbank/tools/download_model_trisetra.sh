@@ -3,9 +3,10 @@
 CURRDIR=$(pwd)
 BASEDIR=$(dirname "$0")
 
-TASKS="curvature \
+TASKS="rgb2depth curvature \
 reshade \
 rgb2sfnorm \
+class_places \
 room_layout \
 vanishing_point"
 mkdir -p "$CURRDIR/$BASEDIR/../temp"
