@@ -12,6 +12,7 @@ import subprocess
 import sys
 import threading
 import time
+import json
 from multiprocessing import Pool
 
 import matplotlib
@@ -194,7 +195,11 @@ def run_to_task():
         return
 
     if task in ['class_1000', 'class_places']:
-        classification(predicted, synset, args.store_name)
+        top_5_classes = classification(predicted, synset, args.store_name)
+        # save predicted classes into a text file
+        s_name, file_extension = os.path.splitext(args.store_name)
+        with open('{}_top_5.txt'.format(s_name), 'w') as fp:
+            json.dump(top_5_classes, fp)
         return
 
     if task == 'vanishing_point':

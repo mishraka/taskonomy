@@ -79,6 +79,7 @@ def classification(predicted, synset, to_store_name):
     fnt = ImageFont.truetype('lib/data/DejaVuSerifCondensed.ttf', 25)
     d.text((20, 5), to_print_pred, fill=(255, 0, 0), font=fnt)
     img.save(to_store_name, 'PNG')
+    return top_5_pred
 
 def semseg_single_image( predicted, img, to_store_name ):
     label = np.argmax(predicted, axis=-1)
