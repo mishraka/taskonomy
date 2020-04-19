@@ -237,4 +237,11 @@ def run_to_task():
 
 
 if __name__ == '__main__':
+    cwd = os.getcwd()
+    dl_folder = os.path.abspath(os.path.dirname(__file__))
+    parent_dir = '/'.join(dl_folder.split('/')[:-1])
+    os.chdir(parent_dir)
+    print("Changing directory to ", parent_dir)
     run_to_task()
+    os.chdir(cwd)
+    print("Changing directory back to ", cwd)

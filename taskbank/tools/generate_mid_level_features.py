@@ -36,7 +36,7 @@ def compute_bottom_roi(img_w, img_h):
 
 
 def crop_image(img, roi):
-    return img[roi[1] : roi[3], roi[0] : roi[2], :]
+    return img[roi[1]: roi[3], roi[0]: roi[2], :]
 
 
 def split_into_square_patches_and_save(full_image_name):
@@ -77,7 +77,8 @@ def combine_response_maps(map_0, map_1, img_shape):
     print("final rows = {}, final cols = {}".format(final_rows, final_cols))
     #
     if map_0.ndim == 2:
-        final_response_map = np.zeros((final_rows, final_cols), dtype=map_0.dtype)
+        final_response_map = np.zeros(
+            (final_rows, final_cols), dtype=map_0.dtype)
         final_response_map[: map_0.shape[0], : map_0.shape[1]] = map_0
         if aspect_ratio > 1:
             col_start = int(map_1.shape[1])
@@ -102,7 +103,8 @@ def combine_response_maps(map_0, map_1, img_shape):
 
 def run_cmd(cmd):
     print(cmd)
-    returned_value = subprocess.Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE)
+    returned_value = subprocess.Popen(
+        cmd, shell=True, stdout=PIPE, stderr=PIPE)
     print("stdout: \n " + returned_value.stdout.read().decode())
     print("stderr: \n " + returned_value.stderr.read().decode())
 
@@ -152,8 +154,10 @@ def compute_fullimage(full_image_name, taskname):
     )
     #
     print("shape of the final full response map {}".format(full_response_map.shape))
-    output_filename = os.path.join(output_folder, os.path.basename(full_image_name))
-    np.save(construct_prediction_filename(output_filename, taskname), full_response_map)
+    output_filename = os.path.join(
+        output_folder, os.path.basename(full_image_name))
+    np.save(construct_prediction_filename(
+        output_filename, taskname), full_response_map)
 
 
 def process_image(image_filename):
@@ -193,7 +197,8 @@ def parse_args():
 
 def find_images_in(dirname):
     all_files = os.listdir(dirname)
-    all_files = filter(lambda x: x.endswith((".png", ".jpeg", ".jpg")), all_files)
+    all_files = filter(lambda x: x.endswith(
+        (".png", ".jpeg", ".jpg")), all_files)
     return [os.path.join(dirname, x) for x in list(all_files)]
 
 
@@ -201,9 +206,9 @@ def initialize(results):
     global img_folder, output_folder, script_name
     output_folder = results.output_folder
     dl_folder = os.path.abspath(os.path.dirname(__file__))
-    sys.path.insert(0, dl_folder.split("/")[:-1])
     script_name = os.path.join(dl_folder, "run_img_task.py")
-    print("script_name = {}, \n output_folder = {}".format(script_name, output_folder))
+    print("script_name = {}, \n output_folder = {}".format(
+        script_name, output_folder))
 
 
 if __name__ == "__main__":
