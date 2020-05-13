@@ -17,6 +17,7 @@ docutils==0.14
 Flask==0.12.2
 gunicorn==19.7.1
 html5lib==0.9999999
+image-to-numpy==1.0.0
 imageio==2.5.0
 itsdangerous==0.24
 Jinja2==2.10
