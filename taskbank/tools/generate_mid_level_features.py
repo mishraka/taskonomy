@@ -15,6 +15,7 @@ import subprocess
 import skimage.io
 import numpy as np
 import argparse
+import image_to_numpy
 from subprocess import STDOUT, Popen, PIPE
 
 #  Inputs
@@ -51,7 +52,8 @@ def split_into_square_patches_and_save(full_image_name):
         "/tmp", image_name.split(".")[0] + "_1." + image_name.split(".")[1]
     )
     #
-    img = skimage.io.imread(full_image_name)
+    img = image_to_numpy.load_image_file(full_image_name)
+    print("image shape = ", img.shape)
     #
     if not os.path.exists(top_squared_image_name):
         top_roi = compute_top_roi(img.shape[1], img.shape[0])
